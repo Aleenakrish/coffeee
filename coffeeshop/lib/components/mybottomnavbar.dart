@@ -12,14 +12,14 @@ class Mybottomnavbar extends StatelessWidget {
         onTabChange: (value) {
           return onTabChange!(value);
         },
-        color: Colors.white,
+        color: Colors.black,
         mainAxisAlignment: MainAxisAlignment.center,
-        tabActiveBorder: Border.all(color: Colors.brown),
+        tabActiveBorder: Border.all(color: Colors.black),
         tabs:[
         GButton(icon: Icons.home,
-        text: "Home",textColor: Colors.white,
+        text: "Home",textColor: Colors.black,
         ), GButton(icon: Icons.shopping_cart,
-        text: "Cart",textColor: Colors.white,
+        text: "Cart",textColor: Colors.black,
         )
       ]
        )

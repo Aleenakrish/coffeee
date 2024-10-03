@@ -26,7 +26,7 @@ class _HomepageState extends State<Homepage> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:const Color.fromARGB(255, 20, 20, 20),
+      backgroundColor:Colors.white,
       bottomNavigationBar: Mybottomnavbar(
         onTabChange: (index)=> navigateBottonBar(index),
         
