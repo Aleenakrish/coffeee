@@ -19,7 +19,7 @@ class _MainPageState extends State<MainPage> {
   }
 
     Future<void>expenseTrack()async{
-    Future.delayed(Duration(seconds: 4),(){
+    Future.delayed(Duration(seconds: 14),(){
       Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>Homepage()));
     });  
     }
@@ -27,12 +27,12 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor:  Colors.black,
+        backgroundColor:  Colors.white,
         title: Center(
           child: Text("COFFEE HOUSE",
-          style: TextStyle(color: Colors.white,
+          style: TextStyle(color: Colors.black,
           fontSize:25 ,
           fontWeight: FontWeight.bold
           ),),
@@ -48,7 +48,7 @@ class _MainPageState extends State<MainPage> {
               // margin: EdgeInsets.only(left: 100),
               alignment: Alignment.center,
               width: double.infinity,
-              height: 700,
+              height:800,
               child:Image.network(
                 "https://png.pngtree.com/png-vector/20230413/ourmid/pngtree-black-coffee-cup-drink-transparent-png-image_6698456.png")
             ),

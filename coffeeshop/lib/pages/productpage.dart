@@ -14,9 +14,9 @@ class _productpageState extends State<productpage> {
   List cart = [];
   List ls = [
     {
-      "name": "Black Coffee",
-      "price": 20,
-      "image": "./images/bb.jpg",
+      "name": "Mocha Coffee",
+      "price": 220,
+      "image": "./images/mocha.jpg",
       "qty": 0
     },
     {
@@ -26,7 +26,7 @@ class _productpageState extends State<productpage> {
       "qty": 0
     },
     {
-      "name": "creamy ice coffee",
+      "name": "Creamy ice coffee",
       "price": 180,
       "image": "./images/ice.jpg",
       "qty": 0
@@ -44,9 +44,9 @@ class _productpageState extends State<productpage> {
       "qty": 0
     },
     {
-      "name": "Black Tea",
-      "price": 25,
-      "image": "./images/black.jpg",
+      "name": "Flat White",
+      "price": 225,
+      "image": "./images/flat.jpeg",
       "qty": 0
     },
   ];
@@ -55,40 +55,83 @@ class _productpageState extends State<productpage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: Center(
-          child: Text(
-            "COFFEE HOUSE",
-            style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color:Colors.black,
-                fontSize: 20),
+      appBar: AppBar(actions: [
+        Container(padding: EdgeInsets.only(right: 450),
+          child: Text("Hello!",
+          style: TextStyle(
+            // fontWeight: FontWeight.bold,
+            fontSize: 20
           ),
-        ),
+          ),)
+      ],
+        backgroundColor: Colors.white,
+        title: Container(
+          child: Icon(Icons.menu,),
+          
+          // Text(
+          //   "COFFEE HOUSE",
+          //   style: TextStyle(
+          //       fontWeight: FontWeight.bold,
+          //       color:Colors.black,
+          //       fontSize: 20),
+          ),
+          
       ),
       body: Column(
-        children: [
+        children: [SizedBox(height: 10,),
+        Container(
+          padding: EdgeInsets.only(right: 320),
+          child: Text("It's A Great Day ",style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 20,
+          ),),
+        ),
+         Container(
+          padding: EdgeInsets.only(right: 370),
+          child: Text("For Coffee",style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 20
+          ),),
+        ),
+        SizedBox(height: 10,),
+       
           Container(
-            height: 40,
-            width: 200,
+            
+            padding: EdgeInsets.all(15),
+            height: 55,
+            width: 350,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),color: Colors.grey
+              borderRadius: BorderRadius.circular(10),color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  blurRadius: 5,
+                  color: Colors.grey
+                )
+              ]
             ),
             child: 
           TextField(
             decoration: InputDecoration(
-              hintText: "Search Coffee"
-            ),
+              border: InputBorder.none,
+               hintText: "Search Coffee",
+              hintStyle: TextStyle(color: Colors.grey)
+
+            )
+            // InputDecoration(
+            //   hintText: "Search Coffee",
+            //   hintStyle: TextStyle(color: Colors.grey)
+            // ),
+          
           ),
-          ),
+          ),SizedBox(height: 10,),
           Expanded(
             child: GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   mainAxisSpacing: 10,
                   crossAxisSpacing: 10,
-                  childAspectRatio: 2 / 3,
-                  crossAxisCount: 2),
+                  childAspectRatio: 2/ 3,
+                  crossAxisCount: 2
+                  ),
               itemCount: ls.length,
               padding: EdgeInsets.all(10),
               itemBuilder: (context, index) {
@@ -100,17 +143,20 @@ class _productpageState extends State<productpage> {
                         BoxShadow(
                             blurRadius: 5,
                             color: Colors.grey,
-                            offset: Offset(5, 5))
+                            // offset: Offset(5, 5)
+                            )
                       ]),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
+                        // padding: EdgeInsets.only(top: 10),
                         alignment: Alignment.center,
                         child: ClipRRect(
-                          borderRadius: BorderRadius.circular(20),
+                          borderRadius: BorderRadius.circular(100),
                           child: Image.asset(
                           ls[index]["image"],
+                          // fit: BoxFit.cover,
                           width: 150,
                           height: 150,
                         ),
@@ -145,7 +191,7 @@ class _productpageState extends State<productpage> {
                             child: Text(
                               "₹${ls[index]["price"]}",
                               style:
-                                  TextStyle(color: Colors.black, fontSize: 15),
+                                  TextStyle(color: Colors.black, fontSize: 17),
                             ),
                           ),
                           Container(
@@ -153,7 +199,7 @@ class _productpageState extends State<productpage> {
                             width: 40,
                             height: 40,
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(100),
+                                borderRadius: BorderRadius.circular(20),
                                 color: const Color.fromARGB(255, 255, 170, 59)),
                             child: IconButton(
                                 onPressed: () {
@@ -170,7 +216,7 @@ class _productpageState extends State<productpage> {
                                 },
                                 icon: Icon(
                                   Icons.add,
-                                  color: Colors.white,
+                                  color:Colors.white,
                                 )),
                           )
                         ],

@@ -1,3 +1,4 @@
+import 'package:coffeeshop/firstpage.dart';
 import 'package:coffeeshop/homepage.dart';
 import 'package:coffeeshop/mainpage.dart';
 import 'package:coffeeshop/pages/cartpage.dart';
@@ -10,11 +11,11 @@ void main()async{
   await Hive.initFlutter();
   var coffee=await Hive.openBox("mybox");
   runApp(MaterialApp(
-    // home: MainPage()
-    home: Homepage(),
+    home: Firstpage(),
+    // home: Homepage(),
   routes: {
     "main":(context)=>MainPage(),
-    "cart":(context)=>Cartpage(),
+    "cart":(context)=>CartPage(),
     "product":(context)=>productpage(),
     "home":(context)=>Homepage()
   },

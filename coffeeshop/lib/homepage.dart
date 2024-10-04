@@ -16,7 +16,7 @@ class _HomepageState extends State<Homepage> {
 
   int selectedpage = 0;
 
-  final List<Widget> page = [productpage(), Cartpage()];
+  final List<Widget> page = [productpage(), CartPage()];
 
   void navigateBottonBar(int index){
     setState(() {
