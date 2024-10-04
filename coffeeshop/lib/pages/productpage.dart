@@ -56,7 +56,7 @@ class _productpageState extends State<productpage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(actions: [
-        Container(padding: EdgeInsets.only(right: 450),
+        Container(padding: EdgeInsets.only(right: 280),
           child: Text("Hello!",
           style: TextStyle(
             // fontWeight: FontWeight.bold,
@@ -80,20 +80,20 @@ class _productpageState extends State<productpage> {
       body: Column(
         children: [SizedBox(height: 10,),
         Container(
-          padding: EdgeInsets.only(right: 320),
+          padding: EdgeInsets.only(right: 150),
           child: Text("It's A Great Day ",style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 20,
           ),),
         ),
          Container(
-          padding: EdgeInsets.only(right: 370),
+          padding: EdgeInsets.only(right: 200),
           child: Text("For Coffee",style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 20
           ),),
         ),
-        SizedBox(height: 10,),
+        SizedBox(height: 20,),
        
           Container(
             
@@ -123,7 +123,7 @@ class _productpageState extends State<productpage> {
             // ),
           
           ),
-          ),SizedBox(height: 10,),
+          ),SizedBox(height: 20,),
           Expanded(
             child: GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

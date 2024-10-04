@@ -58,7 +58,7 @@ class _FirstpageState extends State<Firstpage> {
                     child: Image.asset("./images/back.jpg",fit: BoxFit.fill,)),
                   ),
 
-                      Positioned(top: 20,left: 180,
+                      Positioned(top: 20,left: 60,
                         child:Container(height: 180,width: 300,
                       decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),
                       // color: Colors.grey[400]

@@ -112,10 +112,10 @@ class _CartPageState extends State<CartPage> {
                                       fontSize: 20),
                                 ),
                                 SizedBox(
-                                  height: 15,
+                                  height: 10,
                                 ),
                                 Container(
-                                  padding: EdgeInsets.only(left: 15),
+                                  // padding: EdgeInsets.only(left: 10),
                                   child: Text(
                                     "With Chocolate",
                                     style: TextStyle(
