@@ -44,7 +44,7 @@ class _FirstpageState extends State<Firstpage> {
               alignment: Alignment.center,
               width: double.infinity,
               height: 400,
-              child:Icon(Icons.telegram,size: 100,color: Colors.blue,),
+              child:Icon(Icons.telegram,size: 200,color: Colors.blue,),
             ),
             
           ],
