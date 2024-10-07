@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hashproject/loginpage.dart';
+import 'package:hashproject/second.dart';
 
 class Firstpage extends StatefulWidget {
   const Firstpage({super.key});
@@ -17,7 +17,7 @@ class _FirstpageState extends State<Firstpage> {
 
     Future<void>telegram()async{
     Future.delayed(Duration(seconds: 2),(){
-      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>Loginpage()));
+      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>Second()));
     });  
     }
   @override
