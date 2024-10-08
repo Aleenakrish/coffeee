@@ -4,7 +4,7 @@ import 'package:httpproject/firstpage.dart';
 void main(){
   runApp(
     MaterialApp(
-      home: myapp() ,
+      home: MainPage() ,
     )
   );
 }
