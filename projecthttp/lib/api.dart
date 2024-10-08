@@ -10,13 +10,6 @@ class myapp extends StatefulWidget {
 
 class _myappState extends State<myapp> {
   List<dynamic>data=[];
-  List ls=[
-    {
-      "userId",
-    }
-
-  ];
-
 @override
   void initState() {
     // TODO: implement initState
