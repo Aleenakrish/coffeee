@@ -153,35 +153,46 @@ final Flip=Hive.box("mybox");
                   SizedBox(height: 40,),
                   Center(
                     child: Container(
-                      padding: EdgeInsets.only(left: 50,top: 17),
+                      
                       height: 50,
                       width: 190,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                         color: Colors.amber,
-                        ),
+                      ),
+                      
+                      child: Center(
+                        child: TextButton(onPressed: (){}, 
                         child: Text("Add to Cart",
-                        style: TextStyle(color: Colors.black,
-                        fontWeight: FontWeight.bold
-                        ),),
+                         style: TextStyle(color: Colors.black,
+                            fontWeight: FontWeight.bold
+                            ),
+                        ))
+                      ),
                     ),
                   ),
                   SizedBox(height: 10,),
-                   Center(
+                  Center(
                     child: Container(
-                      padding: EdgeInsets.only(left: 58,top: 17),
+                      
                       height: 50,
                       width: 190,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        color: Colors.orange,
-                        ),
+                        color: Colors.amber,
+                      ),
+                      
+                      child: Center(
+                        child: TextButton(onPressed: (){}, 
                         child: Text("Buy Now",
-                        style: TextStyle(color: Colors.black,
-                        fontWeight: FontWeight.bold
-                        ),),
+                         style: TextStyle(color: Colors.black,
+                            fontWeight: FontWeight.bold
+                            ),
+                        ))
+                      ),
                     ),
                   ),
+                  
                   
                       
                       ],

@@ -38,7 +38,7 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: const Color.fromARGB(255, 250, 243, 243),
         // appBar: AppBar(
         //   backgroundColor: Colors.white,
         // ),
@@ -50,23 +50,39 @@ class _MainPageState extends State<MainPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                height: 80,
-                color: Colors.amber,
+                margin: EdgeInsets.only(left: 100,top: 20),
+                
+                height: 50,
+                width: 260,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.amber,
+                ),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Icon(Icons.search),
+                    SizedBox(
+                      width: 10,),
                     Container(
                       height: 20,
-                      width: 100,
+                    width: 40,
+                      child: Icon(Icons.search,size: 25,)),
+                    Container(
+                      height: 5,
+                      width: 170,
                       child: Expanded(
                         child:TextField(
-
+                          decoration: InputDecoration(
+                            border: InputBorder.none
+                          ),
                         ) ),
                     )
                   ],
                 ),
 
               ),
+              SizedBox(height: 10,),
               Container(
                 // margin: EdgeInsets.only(left: 7, right: 7),
                 child: 
