@@ -49,39 +49,61 @@ class _MainPageState extends State<MainPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                margin: EdgeInsets.only(left: 100,top: 20),
-                
-                height: 50,
-                width: 260,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.amber,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      width: 10,),
-                    Container(
-                      height: 20,
-                    width: 40,
-                      child: Icon(Icons.search,size: 25,)),
-                    Container(
-                      height: 5,
-                      width: 170,
-                      child: Expanded(
-                        child:TextField(
-                          decoration: InputDecoration(
-                            border: InputBorder.none
-                          ),
-                        ) ),
-                    )
-                  ],
-                ),
-
+              Row(
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(left: 20,top: 60),
+                    
+                    height: 60,
+                    width: 270,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          blurRadius: 5,
+                        color: Colors. grey)
+                      ]
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          width: 10,),
+                        Container(
+                          height: 30,
+                        width: 40,
+                          child: Icon(Icons.search,size: 35,)),
+                        Container(
+                          // height: 5,
+                          width: 170,
+                          child: Expanded(
+                            child:TextField(
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+                                hintText: "Search...",
+                                
+                              ),
+                            ) ),
+                        ),
+                       
+                      ],
+                    ),
+                  
+                  
+                  ),
+                  SizedBox(width: 15,),
+                  Container(
+                    margin: EdgeInsets.only(top: 60),
+                height: 60,
+                width: 60,
+                // color: Colors.amber,
+                child: Icon(Icons.qr_code_scanner,size: 35,),
               ),
+                ],
+              ),
+              
               SizedBox(height: 10,),
               Container(
                 // margin: EdgeInsets.only(left: 7, right: 7),
@@ -89,9 +111,9 @@ class _MainPageState extends State<MainPage> {
               Expanded(
                 child: GridView.builder(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        mainAxisSpacing: 5,
-                        crossAxisSpacing: 5,
-                        childAspectRatio: 3 / 4,
+                        mainAxisSpacing: 3,
+                        crossAxisSpacing: 3,
+                        childAspectRatio: 3 / 5,
                         crossAxisCount: 2),
                     itemCount: data.length,
                     itemBuilder: (context, index) {
@@ -139,6 +161,12 @@ class _MainPageState extends State<MainPage> {
                                   child: Text(
                                     data[index]["title"],
                                   )),
+                                  SizedBox(height: 10,),
+                                  Container(
+                                  padding: EdgeInsets.only(left: 10),
+                                  child: Text(data[index]["category"],
+                                  style: TextStyle(color: const Color.fromARGB(255, 180, 180, 180)),)
+                                  ),
                                   Row(
                                     children: [
                                       Icon(Icons.star,
@@ -169,9 +197,7 @@ class _MainPageState extends State<MainPage> {
                                       SizedBox(width: 10,),
                                     ],
                                   ),
-                              Container(
-                                  padding: EdgeInsets.only(left: 10),
-                                  child: Text(data[index]["category"])),
+                              
                                   SizedBox(height: 5,),
                               Row(
                                 children: [
@@ -181,14 +207,14 @@ class _MainPageState extends State<MainPage> {
                                   ),
                                   Text(data[index]["discountPercentage"].toString(),
                                   style: TextStyle(color: const Color.fromARGB(255, 2, 99, 5),fontSize: 15),),
-                                  Text("%",style: TextStyle(color: const Color.fromARGB(255, 2, 99, 5),fontSize: 15),),
+                                  Text("%",style: TextStyle(color: const Color.fromARGB(255, 2, 99, 5),fontSize: 13),),
                                   // SizedBox(width: 5,),
                                   Text("\$${data[index]["price"]}",
-                                  style: TextStyle(fontSize: 16,decoration: TextDecoration.lineThrough,color: Colors.grey),),
+                                  style: TextStyle(fontSize: 13,decoration: TextDecoration.lineThrough,color: Colors.grey),),
                                   SizedBox(width: 5,),
                                   Container(
                                     width: 52,
-                                    height: 20,
+                                    height: 25,
                                     child: Text("\$${(data[index]["price"]-(data[index]["price"]*(data[index]["discountPercentage"]/100))).toString()}",
                                      style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold)
                                     

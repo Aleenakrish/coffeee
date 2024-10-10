@@ -14,7 +14,7 @@ class TouchPage extends StatefulWidget {
 class _TouchPageState extends State<TouchPage> {
  
   List<dynamic>data=[];
-  int index=0;
+  // int index=0;
 final Flip=Hive.box("mybox");
   @override
   void initState() {
@@ -28,7 +28,7 @@ final Flip=Hive.box("mybox");
   }
   @override
   Widget build(BuildContext context) {
-    index=int.parse(ModalRoute.of(context)?.settings.arguments as String);
+   int  index=int.parse(ModalRoute.of(context)?.settings.arguments as String);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -44,17 +44,72 @@ final Flip=Hive.box("mybox");
                 Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [  
+                   Row(
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(left: 20,top: 10),
+                    
+                    height: 60,
+                    width: 270,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          blurRadius: 5,
+                        color: Colors. grey)
+                      ]
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          width: 10,),
+                        Container(
+                          height: 30,
+                        width: 40,
+                          child: Icon(Icons.search,size: 35,)),
+                        Container(
+                          // height: 5,
+                          width: 170,
+                          child: Expanded(
+                            child:TextField(
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+                                hintText: "Search...",
+                                
+                              ),
+                            ) ),
+                        ),
+                       
+                      ],
+                    ),
+                  
+                  
+                  ),
+                  SizedBox(width: 10,),
+                  Container(
+                    margin: EdgeInsets.only(top: 10),
+                height: 60,
+                width: 60,
+                // color: Colors.amber,
+                child: Icon(Icons.qr_code_scanner,size: 35,),
+              ),
+                ],
+              ),
+              SizedBox(height: 20,),
 
                    Container(
                       padding: EdgeInsets.only(left: 10),
                      child: 
                       data[index]["brand"]!=null?
                       Text(
-                        data[index]["brand"],style: TextStyle(fontWeight: FontWeight.bold,fontSize: 17),):
+                        data[index]["brand"],style: TextStyle(fontWeight: FontWeight.bold,fontSize: 19),):
                      Text("",style: TextStyle(fontSize: 0),),
                                 
                       ), 
-                      SizedBox(height: 5,),
+                      SizedBox(height: 10,),
                       Container(
                           padding: EdgeInsets.only(left: 10),
                          child: Text(
@@ -62,10 +117,25 @@ final Flip=Hive.box("mybox");
                            )),
 
                      Container(
-                      height:MediaQuery.of(context).size.height*.6,
-                      child: Image.network(data[index]["images"][0],
-                      fit: BoxFit.contain,
-                      )),
+                      height:MediaQuery.of(context).size.height*.5,
+                      child: ListView.builder(
+                          itemCount: data[index]["images"].length,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, indx) {
+                          return Container(
+                             width: MediaQuery.of(context).size.width,
+                              height: MediaQuery.of(context).size.height * .5,
+                               child:Image.network(data[index]["images"][indx],
+                               fit: BoxFit.contain,
+                               )
+                     
+                          );
+                        
+                      },),
+
+                     
+                      ),
+                      // ),
                       
 
                      Container(
@@ -150,12 +220,41 @@ final Flip=Hive.box("mybox");
                         )
                     ],
                   ),
+                  //////////////////////////////////////////////////////////////////////
+                  
+
+                   SizedBox(
+                  height: 20,
+                ),
+                Text("All details",
+                    style: TextStyle(
+                        fontSize: 20, )
+                        ),
+                        // Container(
+                        //   child:ListView.builder(
+                        //     itemCount: data[index]["comment"],
+                        //     itemBuilder: (context, index) {
+                        //       Text(data[index]["comment"]);
+                        //     },)
+                          
+                        // ),
+                
+                // Text("REVIEWS",
+                //     style: TextStyle(
+                //         fontSize: 20, decoration: TextDecoration.underline)),
+                //         ListView.builder(itemBuilder: (context, indx) {
+                //           Text(data[index]["reviews"][indx]["comment"]);
+                //         },),
+
+
+
+                  ////////////////////////////////////////////////////////////////////
                   SizedBox(height: 40,),
                   Center(
                     child: Container(
                       
-                      height: 50,
-                      width: 190,
+                      height: 60,
+                      width: 300,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                         color: Colors.amber,
@@ -175,11 +274,11 @@ final Flip=Hive.box("mybox");
                   Center(
                     child: Container(
                       
-                      height: 50,
-                      width: 190,
+                      height: 60,
+                      width: 300,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        color: Colors.amber,
+                        color: Colors.orange,
                       ),
                       
                       child: Center(
