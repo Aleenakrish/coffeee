@@ -6,13 +6,13 @@ import 'package:httpproject/productpage.dart';
 
 void main()async{
   await Hive.initFlutter();
-  var flip = await Hive.openBox("mybox");
+  var Flip = await Hive.openBox("mybox");
   runApp(
     MaterialApp(
       home: MainPage() ,
       routes: {
         "firstpage":(context)=>MainPage(),
-        "productpage":(context)=>Productpage()
+        "productpage":(context)=>TouchPage()
       },
     )
   );
