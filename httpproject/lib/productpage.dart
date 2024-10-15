@@ -13,7 +13,8 @@ class TouchPage extends StatefulWidget {
 
 class _TouchPageState extends State<TouchPage> {
  
-  List<dynamic>data=[];
+  List <dynamic>data=[];
+  
   // int index=0;
 final Flip=Hive.box("mybox");
   @override
@@ -24,17 +25,19 @@ final Flip=Hive.box("mybox");
   }
 
   void addData(){
-    data=Flip.get("1");
+     data=Flip.get("1");
+   
   }
   @override
   Widget build(BuildContext context) {
-   int  index=int.parse(ModalRoute.of(context)?.settings.arguments as String);
+   int  indx=int.parse(ModalRoute.of(context)?.settings.arguments as String);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
       ),
       backgroundColor: Colors.white,
-      body: Container(
+      body:
+       Container(
          margin: EdgeInsets.only(left: 10, right: 10),
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
@@ -103,9 +106,9 @@ final Flip=Hive.box("mybox");
                    Container(
                       padding: EdgeInsets.only(left: 10),
                      child: 
-                      data[index]["brand"]!=null?
+                      data[indx]["brand"]!=null?
                       Text(
-                        data[index]["brand"],style: TextStyle(fontWeight: FontWeight.bold,fontSize: 19),):
+                        data[indx]["brand"],style: TextStyle(fontWeight: FontWeight.bold,fontSize: 19),):
                      Text("",style: TextStyle(fontSize: 0),),
                                 
                       ), 
@@ -113,19 +116,19 @@ final Flip=Hive.box("mybox");
                       Container(
                           padding: EdgeInsets.only(left: 10),
                          child: Text(
-                           data[index]["description"],
+                           data[indx]["description"],
                            )),
 
                      Container(
                       height:MediaQuery.of(context).size.height*.5,
                       child: ListView.builder(
-                          itemCount: data[index]["images"].length,
+                          itemCount: data[indx]["images"].length,
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (context, indx) {
                           return Container(
                              width: MediaQuery.of(context).size.width,
                               height: MediaQuery.of(context).size.height * .5,
-                               child:Image.network(data[index]["images"][indx],
+                               child:Image.network(data[indx]["images"][indx],
                                fit: BoxFit.contain,
                                )
                      
@@ -150,30 +153,30 @@ final Flip=Hive.box("mybox");
                       children: [
                       Icon(Icons.star,
                      size: 25,
-                    color: data[index]["rating"]>=4?
-                        Colors.green:data[index]["rating"]>3?
-                       Colors.yellow:data[index]["rating"]>2?
+                    color: data[indx]["rating"]>=4?
+                        Colors.green:data[indx]["rating"]>3?
+                       Colors.yellow:data[indx]["rating"]>2?
                     Colors.orange:Colors.red
                    ), 
                   Icon(Icons.star,
                 size: 25,
-               color: data[index]["rating"]>=4?
-                       Colors.green:data[index]["rating"]>3?
-                     Colors.yellow:data[index]["rating"]>2?
+               color: data[indx]["rating"]>=4?
+                       Colors.green:data[indx]["rating"]>3?
+                     Colors.yellow:data[indx]["rating"]>2?
                    Colors.orange:Colors.black
                   ),
                  Icon(Icons.star,
                 size: 25,
-              color: data[index]["rating"]>=4?
-                 Colors.green:data[index]["rating"]>3?
+              color: data[indx]["rating"]>=4?
+                 Colors.green:data[indx]["rating"]>3?
                   Colors.yellow:Colors.black
                     ),
                      Icon(Icons.star,
                       size: 25,
-                       color: data[index]["rating"]>=4?
+                       color: data[indx]["rating"]>=4?
               Colors.green:Colors.black
               ),
-               Text(data[index]["rating"].toString(),
+               Text(data[indx]["rating"].toString(),
                 style: TextStyle(color:Colors.black),),
                  SizedBox(width: 5,),
                   Text("rating",
@@ -182,32 +185,43 @@ final Flip=Hive.box("mybox");
               ],
                        ),
                   SizedBox(height: 15,),
+                  Container(
+                    height: 50,
+                    width: 250,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      color: const Color.fromARGB(255, 233, 247, 233)
+
+                    ),
+                    child: 
               
               Row(
                 children: [
+                  SizedBox(width: 10,),
                Icon(Icons.arrow_downward,
                 size: 23,
                     
                      color: Colors.green,
                       ),
-                      Text(data[index]["discountPercentage"].toString(),
+                      Text(data[indx]["discountPercentage"].toString(),
                   style: TextStyle(color: const Color.fromARGB(255, 2, 99, 5),fontSize: 16),),
                 Text("%",style: TextStyle(color: const Color.fromARGB(255, 2, 99, 5),fontSize: 23),),
                 SizedBox(width: 10,),
-               Text("${data[index]["price"]}",
-                  style: TextStyle(fontSize: 20,decoration: TextDecoration.lineThrough,color: Colors.grey),),
+               Text("${data[indx]["price"]}",
+                  style: TextStyle(fontSize: 16,decoration: TextDecoration.lineThrough,color: Colors.grey),),
                   SizedBox(width: 10,),
-                    Text("\$${(data[index]["price"]-(data[index]["price"]*(data[index]["discountPercentage"]/100))).toString()}", 
+                    Text("\$ ${(data[indx]["price"]-(data[indx]["price"]*(data[indx]["discountPercentage"]/100))).toString()}", 
                     style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold)
                       )
               ],
                        ),
+                ),
                   SizedBox(height: 10,),
                   Row(
                     children: [
                       Text("Stocks left :",style: TextStyle(fontSize: 15),),
                       SizedBox(width: 5,),
-                       Text(data[index]["stock"].toString(),style: TextStyle(fontSize: 15),
+                       Text(data[indx]["stock"].toString(),style: TextStyle(fontSize: 15),
                         )
                     ],
                   ),
@@ -216,7 +230,7 @@ final Flip=Hive.box("mybox");
                     children: [
                       Text("Return policy :",style: TextStyle(fontSize: 15),),
                       SizedBox(width: 5,),
-                       Text(data[index]["returnPolicy"].toString(),style: TextStyle(fontSize: 15),
+                       Text(data[indx]["returnPolicy"].toString(),style: TextStyle(fontSize: 15),
                         )
                     ],
                   ),
@@ -226,71 +240,107 @@ final Flip=Hive.box("mybox");
                    SizedBox(
                   height: 20,
                 ),
-                Text("All details",
+                Text("REVIEWS :",
                     style: TextStyle(
-                        fontSize: 20, )
+                        fontSize: 15,fontWeight: FontWeight.bold )
                         ),
-                        // Container(
-                        //   child:ListView.builder(
-                        //     itemCount: data[index]["comment"],
-                        //     itemBuilder: (context, index) {
-                        //       Text(data[index]["comment"]);
-                        //     },)
-                          
-                        // ),
-                
-                // Text("REVIEWS",
-                //     style: TextStyle(
-                //         fontSize: 20, decoration: TextDecoration.underline)),
-                //         ListView.builder(itemBuilder: (context, indx) {
-                //           Text(data[index]["reviews"][indx]["comment"]);
-                //         },),
+                        SizedBox(height: 5,),
+                        Container(
+                         height: 300,
+                         width: double.infinity,
+                         padding: EdgeInsets.only(left: 20,right: 15),
+                         child: Expanded(
+                          child: ListView.builder(
+                            itemCount: data[indx]["reviews"].length,
+                            itemBuilder:(context, index) {
+                              return Container(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(height: 20,),
+                                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 1,
+                      color: const Color.fromARGB(255, 235, 234, 234),
+                     ),
+                     SizedBox(height: 5,),
+                                    Text(data[indx]["reviews"][index]["reviewerName"].toString(),
+                                    style: TextStyle(fontSize:15 ),
+                                    ),
+                                    
+                                    SizedBox(height: 5,),
 
+                                    Text(data[indx]["reviews"][index]["date"].toString(),
+                                    style: TextStyle(fontSize:12),
+                                    ),
+                                     SizedBox(height: 5,),
 
+                                    Text(data[indx]["reviews"][index]["rating"].toString(),
+                                    style: TextStyle(fontSize:12 ),
+                                    ),
+                                     SizedBox(height: 5,),
+
+                                    Text(data[indx]["reviews"][index]["comment"].toString(),
+                                    style: TextStyle(fontSize:14 ),
+                                    ),
+                                    SizedBox(height: 5,),
+
+                                    Text(data[indx]["reviews"][index]["reviewerEmail"].toString(),
+                                    style: TextStyle(fontSize:12 ),
+                                    ),
+
+                                    
+                                  ],
+                                ),
+                              );
+                              
+                            }, )
+                          ),
+                        ),
 
                   ////////////////////////////////////////////////////////////////////
                   SizedBox(height: 40,),
-                  Center(
-                    child: Container(
+                  // Center(
+                  //   child: Container(
                       
-                      height: 60,
-                      width: 300,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: Colors.amber,
-                      ),
+                  //     height: 60,
+                  //     width: 300,
+                  //     decoration: BoxDecoration(
+                  //       borderRadius: BorderRadius.circular(20),
+                  //       color: Colors.amber,
+                  //     ),
                       
-                      child: Center(
-                        child: TextButton(onPressed: (){}, 
-                        child: Text("Add to Cart",
-                         style: TextStyle(color: Colors.black,
-                            fontWeight: FontWeight.bold
-                            ),
-                        ))
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 10,),
-                  Center(
-                    child: Container(
+                  //     child: Center(
+                  //       child: TextButton(onPressed: (){}, 
+                  //       child: Text("Add to Cart",
+                  //        style: TextStyle(color: Colors.black,
+                  //           fontWeight: FontWeight.bold
+                  //           ),
+                  //       ))
+                  //     ),
+                  //   ),
+                  // ),
+                  // SizedBox(height: 10,),
+                  // Center(
+                  //   child: Container(
                       
-                      height: 60,
-                      width: 300,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: Colors.orange,
-                      ),
+                  //     height: 60,
+                  //     width: 300,
+                  //     decoration: BoxDecoration(
+                  //       borderRadius: BorderRadius.circular(20),
+                  //       color: Colors.orange,
+                  //     ),
                       
-                      child: Center(
-                        child: TextButton(onPressed: (){}, 
-                        child: Text("Buy Now",
-                         style: TextStyle(color: Colors.black,
-                            fontWeight: FontWeight.bold
-                            ),
-                        ))
-                      ),
-                    ),
-                  ),
+                  //     child: Center(
+                  //       child: TextButton(onPressed: (){}, 
+                  //       child: Text("Buy Now",
+                  //        style: TextStyle(color: Colors.black,
+                  //           fontWeight: FontWeight.bold
+                  //           ),
+                  //       ))
+                  //     ),
+                  //   ),
+                  // ),
                   
                   
                       

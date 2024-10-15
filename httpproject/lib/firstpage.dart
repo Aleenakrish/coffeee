@@ -38,7 +38,7 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: const Color.fromARGB(255, 250, 243, 243),
+        backgroundColor: const Color.fromARGB(255, 255, 254, 254),
         // appBar: AppBar(
         //   backgroundColor: Colors.white,
         // ),
@@ -124,12 +124,12 @@ class _MainPageState extends State<MainPage> {
                         },
                        child:   Container(
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
+                              borderRadius: BorderRadius.circular(5),
                               color: Colors.white,
                               
                               boxShadow: [
                                 BoxShadow(
-                                    blurRadius: 5,
+                                    blurRadius: 2,
                                     color: const Color.fromARGB(255, 201, 200, 200),
                                     
                                     )
