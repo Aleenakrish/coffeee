@@ -58,7 +58,7 @@ class _MainPageState extends State<MainPage> {
                         borderRadius: BorderRadius.circular(10),
                         color: Colors.white,
                         boxShadow: [
-                          BoxShadow(blurRadius: 5, color: Colors.grey)
+                          BoxShadow(blurRadius: 1, color: Colors.grey)
                         ]),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -97,7 +97,10 @@ class _MainPageState extends State<MainPage> {
                       width: 60,
                       // color: Colors.amber,
                       child: TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            // if(Flip.get(11!=null))
+                            Navigator.pushNamed(context, "cartpage");
+                          },
                           child: Icon(
                             Icons.shopping_cart_outlined,
                             color: Colors.black,
@@ -131,7 +134,7 @@ class _MainPageState extends State<MainPage> {
                                   color: Colors.white,
                                   boxShadow: [
                                     BoxShadow(
-                                      blurRadius: 2,
+                                      blurRadius: 1,
                                       color: const Color.fromARGB(
                                           255, 201, 200, 200),
                                     )

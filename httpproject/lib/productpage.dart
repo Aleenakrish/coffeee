@@ -15,7 +15,7 @@ class _TouchPageState extends State<TouchPage> {
   List<dynamic> data = [];
 
   List cart = [];
-  bool _isRunning=false;
+  bool _isRunning = false;
 
   // int index=0;
   final Flip = Hive.box("mybox");
@@ -231,7 +231,7 @@ class _TouchPageState extends State<TouchPage> {
                         "%",
                         style: TextStyle(
                             color: const Color.fromARGB(255, 2, 99, 5),
-                            fontSize: 23),
+                            fontSize: 17),
                       ),
                       SizedBox(
                         width: 10,
@@ -247,7 +247,8 @@ class _TouchPageState extends State<TouchPage> {
                         width: 10,
                       ),
                       Text(
-                          "\$ ${(data[indx]["price"] - (data[indx]["price"] * (data[indx]["discountPercentage"] / 100))).toString()}",
+                          "\$ ${(data[indx]["price"] * (data[indx]["discountPercentage"]) / 100).toString()}",
+                          overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                               fontSize: 16, fontWeight: FontWeight.bold))
                     ],
@@ -286,13 +287,94 @@ class _TouchPageState extends State<TouchPage> {
                     Text(
                       data[indx]["returnPolicy"].toString(),
                       style: TextStyle(fontSize: 15),
-                    )
+                    ),
                   ],
                 ),
-                //////////////////////////////////////////////////////////////////////
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 3,
+                  color: const Color.fromARGB(255, 223, 223, 223),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+
+                Text("Product Details",
+                    style:
+                        TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+                SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  children: [
+                    Text(
+                      "Warranty    ",
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    Text(
+                      data[indx]["warrantyInformation"].toString(),
+                      style: TextStyle(fontSize: 15),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 7,
+                ),
+                Row(
+                  children: [
+                    Text(
+                      "weight      ",
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                    SizedBox(
+                      width: 35,
+                    ),
+                    Text(
+                      data[indx]["weight"].toString(),
+                      style: TextStyle(fontSize: 15),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 7,
+                ),
+                Row(
+                  children: [
+                    Text(
+                      "Availability  ",
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    Text(
+                      data[indx]["availabilityStatus"].toString(),
+                      style: TextStyle(fontSize: 15),
+                    ),
+                  ],
+                ),
+
+                //////////////////
 
                 SizedBox(
                   height: 20,
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 3,
+                  color: const Color.fromARGB(255, 223, 223, 223),
+                ),
+
+                //////////////////////////////////////////////////////////////////////
+
+                SizedBox(
+                  height: 30,
                 ),
                 Text("REVIEWS :",
                     style:
@@ -318,7 +400,7 @@ class _TouchPageState extends State<TouchPage> {
                             Container(
                               width: MediaQuery.of(context).size.width,
                               height: 1,
-                              color: const Color.fromARGB(255, 235, 234, 234),
+                              color: const Color.fromARGB(255, 223, 223, 223),
                             ),
                             SizedBox(
                               height: 5,
@@ -370,35 +452,48 @@ class _TouchPageState extends State<TouchPage> {
                   height: 40,
                 ),
                 Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                              cart.add(data[indx]);
-                            Flip.put("1", cart);
-                            setState(() {
-                             _isRunning=true;
-                            });
-                            },
-                          child: Container(
-                            width: MediaQuery.of(context).size.width*.5,
-                            height: 60,
-                            color: Colors.white,
-                            child: Center(child: _isRunning? GestureDetector(
-                              onTap: () {
-                                Navigator.pushNamed(context, "cartpage");
-                              },
-                              child: Text("GO TO CART")):Text("ADD TO CART")),
-                          ),
-                        ),
-                        Container(
-                          width: MediaQuery.of(context).size.width*.5,
-                          height: 60,
-                          color: const Color.fromARGB(255, 247, 222, 3),
-                          child: Center(child: Text("BUY NOW")),
-                        ),
-                      ],
-                    ) ,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        cart.add(data[indx]);
+                        Flip.put("1", cart);
+                        setState(() {
+                          _isRunning = true;
+                        });
+                      },
+                      child: Container(
+                        width: MediaQuery.of(context).size.width * .4,
+                        height: 60,
+                        color: Colors.white,
+                        child: Center(
+                            child: _isRunning
+                                ? GestureDetector(
+                                    onTap: () {
+                                      Navigator.pushNamed(context, "cartpage");
+                                    },
+                                    child: Text(
+                                      "Go to cart",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    ))
+                                : Text("Add to cart",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold))),
+                      ),
+                    ),
+                    Container(
+                      width: MediaQuery.of(context).size.width * .5,
+                      height: 60,
+                      color: Colors.amber[800],
+                      child: Center(
+                          child: Text(
+                        "Buy now",
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      )),
+                    ),
+                  ],
+                ),
               ],
             ),
           ],
