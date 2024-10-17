@@ -14,9 +14,7 @@ void main()async{
       routes: {
         "firstpage":(context)=>MainPage(),
         "productpage":(context)=>TouchPage(),
-        "cartpage":(context)=>CartPage(
-          
-        )
+        "cartpage":(context)=>CartPage()
       },
     )
   );

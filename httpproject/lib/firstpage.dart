@@ -41,6 +41,13 @@ class _MainPageState extends State<MainPage> {
         backgroundColor: const Color.fromARGB(255, 255, 254, 254),
         // appBar: AppBar(
         //   backgroundColor: Colors.white,
+        //   actions: [
+        //     GestureDetector(
+        //       onTap: () {
+        //         Navigator.pushNamed(context, "cartpage");
+        //       },
+        //     )
+        //   ],
         // ),
         body: Container(
           width: MediaQuery.of(context).size.width,
@@ -51,7 +58,7 @@ class _MainPageState extends State<MainPage> {
               Row(
                 children: [
                   Container(
-                    margin: EdgeInsets.only(left: 20, top: 60),
+                    margin: EdgeInsets.only(left: 20, top: 30),
                     height: 60,
                     width: 270,
                     decoration: BoxDecoration(
@@ -92,15 +99,19 @@ class _MainPageState extends State<MainPage> {
                     width: 15,
                   ),
                   Container(
-                      margin: EdgeInsets.only(top: 60),
+                      margin: EdgeInsets.only(top: 40),
                       height: 60,
                       width: 60,
                       // color: Colors.amber,
-                      child: TextButton(
-                          onPressed: () {
-                            // if(Flip.get(11!=null))
-                            Navigator.pushNamed(context, "cartpage");
-                          },
+                      child: 
+                      GestureDetector(
+                        onTap: () {
+                Navigator.pushNamed(context, "cartpage");
+              },
+                          // onPressed: () {
+                          //   // if(Flip.get(11!=null))
+                          //   Navigator.pushNamed(context, "cartpage");
+                          // },
                           child: Icon(
                             Icons.shopping_cart_outlined,
                             color: Colors.black,

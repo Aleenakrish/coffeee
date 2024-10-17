@@ -20,7 +20,7 @@ class _CartPageState extends State<CartPage> {
   }
 
   void addData() {
-    data = Flip.get("1");
+    data = Flip.get("2");
     print(data);
   }
 
