@@ -38,36 +38,64 @@ class _CartPageState extends State<CartPage> {
           itemBuilder: (context, index) {
           return Container(
             width: MediaQuery.of(context).size.width,
-            height: 200,
+            height: 230,
             decoration: BoxDecoration(
               color: Colors.white,
               boxShadow: [
                 BoxShadow(
-                  blurRadius: 10,
+                  blurRadius: 5,
                   color: Colors.grey,
-                  offset: Offset(5, 5)
+                  // offset: Offset(5, 5)
                 )
               ]
             ),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  margin: EdgeInsets.only(top: 20,left: 10),
-                  width: 100,
-                  height: 100,
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: const Color.fromARGB(255, 248, 247, 247))
-                  ),
-                  child: Column(
-                    children: [
-                      Image.network(
-                      data[index]["images"][0],
-                      fit: BoxFit.contain,
+                Column(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(top: 20,left: 10),
+                      width: 90,
+                      height: 90,
+                      
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color:const Color.fromARGB(255, 219, 217, 217)),
                       ),
-                    ],
-                  ),
+                      child: Column(
+                        children: [
+                          Image.network(
+                          data[index]["images"][0],
+                          fit: BoxFit.contain,
+                          ),
+                         
+                        ],
+                      
+                    
+                      ),
+                      
+                    ),
+                    SizedBox(height: 10,),
+                    Container(
+                      margin: EdgeInsets.only(left: 13),
+                      height: 25,
+                      width: 90,
+                      
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: const Color.fromARGB(255, 219, 217, 217)),
+                      ),
+                      child: Row(
+                        children: [
+                          SizedBox(width: 10,),
+                          Text("Qty : 1"),
+                          SizedBox(width: 10,),
+                          Icon(Icons.arrow_drop_down,color: Colors.black,)
+                        ],
+                      )
+                    )
+                  ],
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -103,19 +131,19 @@ class _CartPageState extends State<CartPage> {
                                 ? Colors.yellow
                                 : data[index]["rating"] > 2
                                     ? Colors.orange
-                                    : Colors.black),
+                                    : Colors.grey),
                     Icon(Icons.star,
                         size: 23,
                         color: data[index]["rating"] >= 4
                             ? Colors.green
                             : data[index]["rating"] > 3
                                 ? Colors.yellow
-                                : Colors.black),
+                                : Colors.grey),
                     Icon(Icons.star,
                         size: 23,
                         color: data[index]["rating"] >= 4
                             ? Colors.green
-                            : Colors.black),
+                            : Colors.grey),
                             SizedBox(width: 5,),
                    Text(
                       data[index]["rating"].toString(),
@@ -164,16 +192,19 @@ class _CartPageState extends State<CartPage> {
                       width:80,
                       height: 30,
                       child: Text(
-                          "\$${(data[index]["price"] - (data[index]["price"] * (data[index]["discountPercentage"] / 100))).toString()}",
+                            "\$${(data[index]["price"] * (data[index]["discountPercentage"]) / 100).toString()}",
                           style: TextStyle(
                               fontSize: 17, fontWeight: FontWeight.bold)),
                     )
                   ],
                 ),SizedBox(height: 10,),
-                 Text(data[index]["availabilityStatus"].toString(),
-                        style: TextStyle(
-                          fontSize: 15,color: Colors.pink[800]
-                        )),
+                 Container(
+                  padding: EdgeInsets.only(left: 20),
+                   child: Text(data[index]["availabilityStatus"].toString(),
+                          style: TextStyle(
+                            fontSize: 15,color: Colors.pink[800]
+                          )),
+                 ),
                 ],
               )
           ]));

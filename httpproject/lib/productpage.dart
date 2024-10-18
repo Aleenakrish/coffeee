@@ -456,11 +456,18 @@ class _TouchPageState extends State<TouchPage> {
                   children: [
                     GestureDetector(
                       onTap: () {
+                       if(Flip.get("2")!=null){
+                        cart=Flip.get("2");
                         cart.add(data[indx]);
-                        Flip.put("1", cart);
-                        setState(() {
-                          _isRunning = true;
-                        });
+                        print(Flip.get("2"));
+                       }else{
+                        cart.add(data[indx]);
+                        Flip.put("2", cart);
+                        print(Flip.get("2"));
+                       }
+                       setState(() {
+                         _isRunning=true;
+                       });
                       },
                       child: Container(
                         width: MediaQuery.of(context).size.width * .4,
