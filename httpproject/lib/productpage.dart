@@ -207,7 +207,7 @@ class _TouchPageState extends State<TouchPage> {
                 ),
                 Container(
                   height: 50,
-                  width: 250,
+                  width: 255,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5),
                       color: const Color.fromARGB(255, 233, 247, 233)),
@@ -246,11 +246,14 @@ class _TouchPageState extends State<TouchPage> {
                       SizedBox(
                         width: 10,
                       ),
-                      Text(
-                          "\$ ${(data[indx]["price"] * (data[indx]["discountPercentage"]) / 100).toString()}",
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.bold))
+                      Container(
+                        width: 80,
+                        child: Text(
+                            "\$ ${(data[indx]["price"] * (data[indx]["discountPercentage"]) / 100).toString()}",
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.bold)),
+                      )
                     ],
                   ),
                 ),
@@ -397,11 +400,7 @@ class _TouchPageState extends State<TouchPage> {
                             SizedBox(
                               height: 20,
                             ),
-                            Container(
-                              width: MediaQuery.of(context).size.width,
-                              height: 1,
-                              color: const Color.fromARGB(255, 223, 223, 223),
-                            ),
+                           
                             SizedBox(
                               height: 5,
                             ),
@@ -422,7 +421,7 @@ class _TouchPageState extends State<TouchPage> {
                             ),
                             Text(
                               data[indx]["reviews"][index]["rating"].toString(),
-                              style: TextStyle(fontSize: 12),
+                              style: TextStyle(fontSize: 13),
                             ),
                             SizedBox(
                               height: 5,
@@ -430,7 +429,7 @@ class _TouchPageState extends State<TouchPage> {
                             Text(
                               data[indx]["reviews"][index]["comment"]
                                   .toString(),
-                              style: TextStyle(fontSize: 14),
+                              style: TextStyle(fontSize: 15),
                             ),
                             SizedBox(
                               height: 5,
@@ -438,7 +437,13 @@ class _TouchPageState extends State<TouchPage> {
                             Text(
                               data[indx]["reviews"][index]["reviewerEmail"]
                                   .toString(),
-                              style: TextStyle(fontSize: 12),
+                              style: TextStyle(fontSize: 14),
+                            ),
+                            SizedBox(height: 10),
+                             Container(
+                              width: MediaQuery.of(context).size.width,
+                              height: 1,
+                              color: const Color.fromARGB(255, 223, 223, 223),
                             ),
                           ],
                         ),

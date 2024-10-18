@@ -38,7 +38,8 @@ class _CartPageState extends State<CartPage> {
           itemBuilder: (context, index) {
           return Container(
             width: MediaQuery.of(context).size.width,
-            height: 230,
+            height: 210,
+            margin: EdgeInsets.only(bottom: 10),
             decoration: BoxDecoration(
               color: Colors.white,
               boxShadow: [
@@ -90,7 +91,7 @@ class _CartPageState extends State<CartPage> {
                         children: [
                           SizedBox(width: 10,),
                           Text("Qty : 1"),
-                          SizedBox(width: 10,),
+                          SizedBox(width: 5,),
                           Icon(Icons.arrow_drop_down,color: Colors.black,)
                         ],
                       )
@@ -101,8 +102,10 @@ class _CartPageState extends State<CartPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
+                      width: 270,
                       margin: EdgeInsets.only(top: 20,left: 10),
                       child: Text(data[index]["title"],
+                      overflow: TextOverflow.ellipsis,
                       style: TextStyle(fontSize: 19,letterSpacing: 1,
                       // fontWeight: FontWeight.bold
                       ),

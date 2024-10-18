@@ -58,7 +58,7 @@ class _MainPageState extends State<MainPage> {
               Row(
                 children: [
                   Container(
-                    margin: EdgeInsets.only(left: 20, top: 30),
+                    margin: EdgeInsets.only(left: 20, top: 50),
                     height: 60,
                     width: 270,
                     decoration: BoxDecoration(
@@ -120,7 +120,7 @@ class _MainPageState extends State<MainPage> {
                 ],
               ),
               SizedBox(
-                height: 10,
+                height: 1,
               ),
               Container(
                 // margin: EdgeInsets.only(left: 7, right: 7),
@@ -254,22 +254,27 @@ class _MainPageState extends State<MainPage> {
                                             fontSize: 13),
                                       ),
                                       // SizedBox(width: 5,),
-                                      Text(
-                                        "\$${data[index]["price"]}",
-                                        style: TextStyle(
-                                            fontSize: 13,
-                                            decoration:
-                                                TextDecoration.lineThrough,
-                                            color: Colors.grey),
+                                      Container(
+                                        width: 50,
+                                        child: Text(
+                                          "\$${data[index]["price"]}",
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                              fontSize: 13,
+                                              decoration:
+                                                  TextDecoration.lineThrough,
+                                              color: Colors.grey),
+                                        ),
                                       ),
                                       SizedBox(
                                         width: 5,
                                       ),
                                       Container(
                                         width: 52,
-                                        height: 25,
+                                        height: 30,
                                         child: Text(
                                             "\$${(data[index]["price"] - (data[index]["price"] * (data[index]["discountPercentage"] / 100))).toString()}",
+                                            overflow: TextOverflow.ellipsis,
                                             style: TextStyle(
                                                 fontSize: 16,
                                                 fontWeight: FontWeight.bold)),
