@@ -106,7 +106,7 @@ class _CartPageState extends State<CartPage> {
                       margin: EdgeInsets.only(top: 20,left: 10),
                       child: Text(data[index]["title"],
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(fontSize: 19,letterSpacing: 1,
+                      style: TextStyle(fontSize: 19,letterSpacing: 1,  
                       // fontWeight: FontWeight.bold
                       ),
                         ),
