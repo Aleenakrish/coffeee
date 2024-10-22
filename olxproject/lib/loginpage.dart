@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:olxproject/signuppage.dart';
 
 class loginpage extends StatefulWidget {
   const loginpage({super.key});
@@ -38,68 +39,126 @@ class _loginpageState extends State<loginpage> {
 
           
         ),
-        Row(
-          children: [
-            Container(
-              padding: EdgeInsets.only(left: 50),
-              child: Text("UserName  :",style: TextStyle(
-                fontSize: 18
-              ),),
-            ),
-            SizedBox(width: 10,),
-            
-            Container(
-              width: 250,
-              // padding: EdgeInsets.only(right: 30),
-              child: Expanded(
-                child:TextField(
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    enabledBorder: OutlineInputBorder()
-                  ),
-                ) ),
+        Container(
+          // padding: EdgeInsets.only(left: 20),
+          margin: EdgeInsets.only(left: 90,right: 90),
+          height: 50,
+          width: 200,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              blurRadius: 5,color: Colors.grey
             )
-          ],
-        ),
-        SizedBox(height: 30,),
-        Row(
-          children: [
-            Container(
-              padding: EdgeInsets.only(left: 50),
-              child: Text("Password  :",style: TextStyle(
-                fontSize: 18
-              ),),
-            ),
-            SizedBox(width: 15,),
-            
-            Container(
-              width: 250,
-              // padding: EdgeInsets.only(right: 30),
-              child: Expanded(
-                child:TextField(
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    enabledBorder: OutlineInputBorder()
+          ]
+          ),
+          child: Row(
+            children: [
+              Container(
+                padding: EdgeInsets.only(left: 20),
+                child: Icon(Icons.people_sharp)
+                ),
+                SizedBox(width: 20,),
+                Container(
+                  
+                  child: Expanded(
+                    child: TextField(
+                      decoration:InputDecoration(
+                        border: InputBorder.none,
+                        hintText: "UserName",
+                        
+                      )
+                    )
                   ),
-                ) ),
-            )
-          ],
+                )
+            ],
+          ),
         ),
-        SizedBox(height: 60,),
-
+        SizedBox(height: 20,),
+         Container(
+          // padding: EdgeInsets.only(left: 20),
+          margin: EdgeInsets.only(left: 90,right: 90),
+          height: 50,
+          width: 200,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              blurRadius: 5,color: Colors.grey
+            )
+          ]
+          ),
+          child: Row(
+            children: [
+                SizedBox(width: 20,),
+                Container(
+                  padding: EdgeInsets.only(right: 20),
+                  child:Icon(
+                    Icons.lock,size: 20,) ,
+                ),
+                Container(
+                  
+                  child: Expanded(
+                    child: TextField(
+                      decoration:InputDecoration(
+                        border: InputBorder.none,
+                        hintText: "Password",
+                        
+                      )
+                    )
+                  ),
+                ),Container(
+                  padding: EdgeInsets.only(right: 20),
+                  child:Icon(
+                    Icons.remove_red_eye,size: 20,) ,
+                )
+            ],
+          ),
+        ),
+        SizedBox(height: 40,),
         Container(
           margin: EdgeInsets.only(left: 200,right: 200),
           height: 50,
-          width: 60,
+          width: 100,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-          color: Colors.green,
+            borderRadius: BorderRadius.circular(20),
+          
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              blurRadius: 5,
+              color: Colors.grey
+            )
+          ]
           ),
-          child: TextButton(onPressed: (){}, 
-          child:Text("Login",style: TextStyle(
-            color: Colors.white,fontWeight: FontWeight.bold
-          ),)),
-        )
+          child: TextButton(onPressed: (){},
+           child: Text("Login",style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,fontSize: 17
+
+           ),)),
+        ),
+        SizedBox(height: 20,),
+        Container(
+          child: Row(
+            children: [
+              Container(
+                padding: EdgeInsets.only(left: 130),
+                child: Text("Don't have an account?"),
+              ),
+              Container(
+                child: TextButton(onPressed: (){
+                   Navigator.push(context, MaterialPageRoute(builder:(context)=>Signuppage()));
+                }, 
+                child: Text("Sign up")),
+              )
+            ],
+          ),
+        ),
+          
+        
         ]
       ),
     );
