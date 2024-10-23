@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:olxproject/loginpage.dart';
-import 'package:olxproject/signuppage.dart';
+// import 'package:olxproject/signuppage.dart';
 
 
 void main(){
   runApp(
     MaterialApp(
-      home:loginpage(),
+      home:Loginpage(),
       routes: {
-        "loginpage":(context)=>loginpage(),
-        "signuppage":(context)=>Signuppage()
+        "loginpage":(context)=>Loginpage(),
+        // "signuppage":(context)=>Signuppage()
       },
     )
   );
