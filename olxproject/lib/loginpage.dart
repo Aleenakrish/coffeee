@@ -1,46 +1,63 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:http/http.dart'as http;
 
-import 'package:http/http.dart' as http;
 
-class Loginpage extends StatefulWidget {
-  const Loginpage({super.key});
+class SignIn extends StatefulWidget {
+  const SignIn({super.key});
 
   @override
-  State<Loginpage> createState() => _LoginpageState();
+  State<SignIn> createState() => _SignInState();
 }
+class _SignInState extends State<SignIn> {
+TextEditingController email=TextEditingController();
+TextEditingController pword=TextEditingController();
+  bool obs=true;
 
-class _LoginpageState extends State<Loginpage> {
-  TextEditingController email = TextEditingController();
-  TextEditingController pssword = TextEditingController();
-  bool obs = true;
+  Map mp={};
+  Map map={};
 
-  Map mp = {};
+  final _olx=Hive.box("mybox");
 
-  void saveData() async {
-    mp = {"email": email.text, "password": pssword.text};
-    var res = await http.post(Uri.parse("http://jandk.tech/api/signin"),
-        headers: {"Content-Type": "application/json"}, body: jsonEncode(mp));
-    print(res.statusCode);
+  void saveData()async{
+    mp={
+      "email":email.text,
+      "password":pword.text
+    };
+    var res=await http.post(Uri.parse("http://jandk.tech/api/signin"),
+    headers: {"Content-Type":"application/json"},
+    body: jsonEncode(mp));
+    print(res.statusCode); 
+
+    var map=jsonDecode(res.body);
+    // print(map["token"]);
+
+    if(res.statusCode==200){
+      _olx.put("key", map["token"]);
+      print(_olx.get("key"));
+      Navigator.pushNamedAndRemoveUntil(context, "homepage", (route)=>false);
+    }
+    else{
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(map["msg"])));
+    }
   }
-
-  @override
-  Widget build(BuildContext context) {
+     @override
+    Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: Center(
-            child: Text(
-          "Login",
-          style: TextStyle(fontWeight: FontWeight.bold),
-        )),
       ),
-      body: ListView(children: [
-        Container(
-          child: Container(
-            margin: EdgeInsets.only(top: 30),
+      body: Container(
+        alignment: Alignment.center,
+        child:ListView(
+          children: [ Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+            margin: EdgeInsets.only(top: 10),
             // padding: EdgeInsets.only(left: 60),
             height: 290,
             // width: 350,
@@ -51,87 +68,113 @@ class _LoginpageState extends State<Loginpage> {
             ),
             child: Image.asset("./images/olx.png"),
           ),
-        ),
-        SizedBox(
-          height: 20,
-        ),
-        Container(
-          margin: EdgeInsets.only(left: 50, right: 50),
-          padding: EdgeInsets.only(left: 20),
-          width: MediaQuery.of(context).size.width * .6,
-          height: 50,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
+            
+            Container(
+              margin: EdgeInsets.only(left: 20,right: 20),
+              padding: EdgeInsets.only(left: 20),
+              width: MediaQuery.of(context).size.width*.8,
+              height: 55,
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),
               color: Colors.white,
               boxShadow: [
                 BoxShadow(
                   blurRadius: 10,
                   color: Colors.grey,
+                 
                 )
-              ]),
-          child: TextField(
-            controller: email,
-            keyboardType: TextInputType.emailAddress,
-            decoration: InputDecoration(
-                border: InputBorder.none,
-                hintText: "Email",
-                labelStyle: TextStyle(fontWeight: FontWeight.bold),
-                prefixIcon: Icon(Icons.email)),
-          ),
-        ),
-        SizedBox(
-          height: 30,
-        ),
-        Container(
-          margin: EdgeInsets.only(left: 50, right: 50),
-          padding: EdgeInsets.only(left: 20),
-          width: MediaQuery.of(context).size.width * .8,
-          height: 50,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
+              ]
+              ),
+              child: TextField(
+                controller: email,
+                keyboardType: TextInputType.emailAddress,
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  labelText: "Email",
+                  labelStyle: TextStyle(fontWeight: FontWeight.bold),
+                  prefixIcon: Icon(Icons.email)
+                ),
+              ),
+            ),
+            SizedBox(height: 30,),
+            Container(
+              margin: EdgeInsets.only(left: 20,right: 20),
+              padding: EdgeInsets.only(left: 20),
+              width: MediaQuery.of(context).size.width*.8,
+              height: 55,
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),
               color: Colors.white,
               boxShadow: [
                 BoxShadow(
-                  blurRadius: 10, color: Colors.grey,
-                  //  offset: Offset(5, 5)
+                  blurRadius: 10,
+                  color: Colors.grey,
+                  offset: Offset(5, 5)
                 )
-              ]),
-          child: TextField(
-            controller: pssword,
-            obscureText: obs,
-            decoration: InputDecoration(
-                border: InputBorder.none,
-                // labelText: "Password",
-                hintText: "Password",
-                labelStyle: TextStyle(fontWeight: FontWeight.bold),
-                prefixIcon: Icon(Icons.lock),
-                suffixIcon: GestureDetector(
+              ]
+              ),
+              child: TextField(
+                controller: pword,
+                obscureText: obs,
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  labelText: "Password",
+                  labelStyle: TextStyle(fontWeight: FontWeight.bold),
+                  prefixIcon: Icon(Icons.lock),
+                  suffixIcon: GestureDetector(
                     onTap: () {
                       setState(() {
-                        obs == true ? obs = false : obs = true;
+                        obs==true?
+                        obs=false:obs=true;
                       });
                     },
-                    child: Icon(Icons.remove_red_eye))),
-          ),
-        ),
-        SizedBox(
-          height: 40,
-        ),
-        //   Container(
-        //     margin: EdgeInsets.only(left: 20, right: 20),
-        //     padding: EdgeInsets.only(left: 20),
-        //     width: MediaQuery.of(context).size.width * .8,
-        //     height: 60,
-        //     decoration: BoxDecoration(
-        //         borderRadius: BorderRadius.circular(10),
-        //         color: const Color.fromARGB(255, 22, 216, 216),
-        //         boxShadow: [
-        //           BoxShadow(
-        //               blurRadius: 10, color: Colors.grey, offset: Offset(5, 5))
-        //         ]),
-        //   )
-      ]),
+                    child: Icon(Icons.remove_red_eye))
+                ),
+              ),
+            ),
+            SizedBox(height: 40,),
+            Container(
+               margin: EdgeInsets.only(left: 20,right: 20),
+              padding: EdgeInsets.only(left: 20),
+              width: MediaQuery.of(context).size.width*.8,
+              height: 55,
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),
+             color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  blurRadius: 10,
+                  color: Colors.grey,
+                  offset: Offset(5, 5)
+                )
+              ]
+              ),
+              child: TextButton(onPressed: (){
+                saveData();
+              }, child: Text("Log In",
+              style: TextStyle(color: Colors.black,fontSize: 20),)),
+            ),
+            // SizedBox(height: 50,),
+            // Text("forgot password?",
+            // style: TextStyle(fontSize: 17,color: Colors.black,),),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(height: 250,),
+                Text("Don't have an account?",
+                style: TextStyle(fontSize: 17),),
+                SizedBox(width: 10,),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, "signup");
+                  },
+                  child: Text("Sign Up",style:TextStyle(color: Colors.black,fontSize: 16)
+               )
+             )
+            ],
+           )
+          ]
+                 ),
+          ]
+        )
+      )
     );
-    ;
   }
 }

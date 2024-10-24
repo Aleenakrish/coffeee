@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:http/http.dart'as http;
 
 
@@ -13,20 +14,34 @@ class SignIn extends StatefulWidget {
 
 class _SignInState extends State<SignIn> {
 TextEditingController email=TextEditingController();
-TextEditingController pword=TextEditingController();
+TextEditingController pssword=TextEditingController();
   bool obs=true;
 
   Map mp={};
+    Map map={};
+
+  final _olx=Hive.box("mybox");
 
   void saveData()async{
     mp={
       "email":email.text,
-      "password":pword.text
+      "password":pssword.text
     };
 var res=await http.post(Uri.parse("http://jandk.tech/api/signin"),
     headers: {"Content-Type":"application/json"},
     body: jsonEncode(mp));
-    print(res.statusCode);  }
+    print(res.statusCode); 
+    
+      var map=jsonDecode(res.body);
+       if(res.statusCode==200){
+      _olx.put("key", map["token"]);
+      print(_olx.get("key"));
+      Navigator.pushNamedAndRemoveUntil(context, "homepage", (route)=>false);
+    } else{
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(map["msg"])));
+    }
+    
+     }
 
   @override
   Widget build(BuildContext context) {
@@ -98,7 +113,7 @@ var res=await http.post(Uri.parse("http://jandk.tech/api/signin"),
               ]
               ),
               child: TextField(
-                controller: pword,
+                controller: pssword,
                 obscureText: obs,
                 decoration: InputDecoration(
                   border: InputBorder.none,
