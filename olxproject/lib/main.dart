@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:olxproject/homepage.dart';
-import 'package:olxproject/loginpage.dart';
-import 'package:olxproject/signuppage.dart';
+import 'package:olxproject/olxp/homepage.dart';
+import 'package:olxproject/olxp/loginpage.dart';
+import 'package:olxproject/olxp/signuppage.dart';
 
 void main()async{
   await Hive.initFlutter();
@@ -11,7 +11,7 @@ void main()async{
   runApp(MaterialApp(home: SignIn(),
   routes: {
     "homepage":(context)=>Homepage(),
-    "signin":(context)=>SignIn(),
+    "login":(context)=>SignIn(),
     "signup":(context)=>SignUp()
   },
   ));

@@ -11,40 +11,40 @@ class SignIn extends StatefulWidget {
   @override
   State<SignIn> createState() => _SignInState();
 }
+
 class _SignInState extends State<SignIn> {
 TextEditingController email=TextEditingController();
-TextEditingController pword=TextEditingController();
+TextEditingController pssword=TextEditingController();
   bool obs=true;
 
   Map mp={};
-  Map map={};
+    Map map={};
 
   final _olx=Hive.box("mybox");
 
   void saveData()async{
     mp={
       "email":email.text,
-      "password":pword.text
+      "password":pssword.text
     };
-    var res=await http.post(Uri.parse("http://jandk.tech/api/signin"),
+var res=await http.post(Uri.parse("http://jandk.tech/api/signin"),
     headers: {"Content-Type":"application/json"},
     body: jsonEncode(mp));
     print(res.statusCode); 
-
-    var map=jsonDecode(res.body);
-    // print(map["token"]);
-
-    if(res.statusCode==200){
+    
+      var map=jsonDecode(res.body);
+       if(res.statusCode==200){
       _olx.put("key", map["token"]);
       print(_olx.get("key"));
       Navigator.pushNamedAndRemoveUntil(context, "homepage", (route)=>false);
-    }
-    else{
+    } else{
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(map["msg"])));
     }
-  }
-     @override
-    Widget build(BuildContext context) {
+    
+     }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -57,6 +57,7 @@ TextEditingController pword=TextEditingController();
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
+          child: Container(
             margin: EdgeInsets.only(top: 10),
             // padding: EdgeInsets.only(left: 60),
             height: 290,
@@ -68,19 +69,19 @@ TextEditingController pword=TextEditingController();
             ),
             child: Image.asset("./images/olx.png"),
           ),
-            
+        ),
             Container(
-              margin: EdgeInsets.only(left: 20,right: 20),
-              padding: EdgeInsets.only(left: 20),
+              margin: EdgeInsets.only(left: 50,right: 50),
+              // padding: EdgeInsets.only(left: 20),
               width: MediaQuery.of(context).size.width*.8,
-              height: 55,
+              height: 50,
               decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),
-              color: Colors.white,
+              color:Colors.white,
               boxShadow: [
                 BoxShadow(
-                  blurRadius: 10,
+                  blurRadius: 5,
                   color: Colors.grey,
-                 
+                  offset: Offset(3, 3)
                 )
               ]
               ),
@@ -89,7 +90,7 @@ TextEditingController pword=TextEditingController();
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
                   border: InputBorder.none,
-                  labelText: "Email",
+                  hintText:"Email",
                   labelStyle: TextStyle(fontWeight: FontWeight.bold),
                   prefixIcon: Icon(Icons.email)
                 ),
@@ -100,23 +101,23 @@ TextEditingController pword=TextEditingController();
               margin: EdgeInsets.only(left: 20,right: 20),
               padding: EdgeInsets.only(left: 20),
               width: MediaQuery.of(context).size.width*.8,
-              height: 55,
+              height: 50,
               decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),
               color: Colors.white,
               boxShadow: [
                 BoxShadow(
-                  blurRadius: 10,
+                  blurRadius: 5,
                   color: Colors.grey,
-                  offset: Offset(5, 5)
+                  offset: Offset(3, 3)
                 )
               ]
               ),
               child: TextField(
-                controller: pword,
+                controller: pssword,
                 obscureText: obs,
                 decoration: InputDecoration(
                   border: InputBorder.none,
-                  labelText: "Password",
+                  hintText: "Password",
                   labelStyle: TextStyle(fontWeight: FontWeight.bold),
                   prefixIcon: Icon(Icons.lock),
                   suffixIcon: GestureDetector(
@@ -126,7 +127,7 @@ TextEditingController pword=TextEditingController();
                         obs=false:obs=true;
                       });
                     },
-                    child: Icon(Icons.remove_red_eye))
+                    child: Icon(Icons.remove_red_eye,size: 20,))
                 ),
               ),
             ),
@@ -135,9 +136,9 @@ TextEditingController pword=TextEditingController();
                margin: EdgeInsets.only(left: 20,right: 20),
               padding: EdgeInsets.only(left: 20),
               width: MediaQuery.of(context).size.width*.8,
-              height: 55,
+              height: 50,
               decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),
-             color: Colors.white,
+              color: Colors.white,
               boxShadow: [
                 BoxShadow(
                   blurRadius: 10,
@@ -151,21 +152,23 @@ TextEditingController pword=TextEditingController();
               }, child: Text("Log In",
               style: TextStyle(color: Colors.black,fontSize: 20),)),
             ),
-            // SizedBox(height: 50,),
-            // Text("forgot password?",
-            // style: TextStyle(fontSize: 17,color: Colors.black,),),
+            SizedBox(height: 50,),
+            Text("forgot password?",
+            style: TextStyle(fontSize: 17,color:Colors.white),),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(height: 250,),
                 Text("Don't have an account?",
-                style: TextStyle(fontSize: 17),),
+                style: TextStyle(
+                  
+                fontSize: 15),),
                 SizedBox(width: 10,),
                 GestureDetector(
                   onTap: () {
                     Navigator.pushNamed(context, "signup");
                   },
-                  child: Text("Sign Up",style:TextStyle(color: Colors.black,fontSize: 16)
+                  child: Text("Sign Up",style:TextStyle(color: Colors.black,fontSize: 15)
                )
              )
             ],
